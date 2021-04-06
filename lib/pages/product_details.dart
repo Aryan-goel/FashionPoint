@@ -82,7 +82,24 @@ class _ProductDetailsState extends State<ProductDetails> {
               Expanded(
                 child: MaterialButton(
                   elevation: 8,
-                  onPressed: () {},
+                  onPressed: () {
+                    showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            title: Text("Size"),
+                            content: Text("choose the size"),
+                            actions: [
+                              MaterialButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop(context);
+                                },
+                                child: Text("Close"),
+                              )
+                            ],
+                          );
+                        });
+                  },
                   color: Colors.white70,
                   textColor: Colors.black,
                   child: Row(
@@ -97,7 +114,24 @@ class _ProductDetailsState extends State<ProductDetails> {
               Expanded(
                 child: MaterialButton(
                   elevation: 8,
-                  onPressed: () {},
+                  onPressed: () {
+                    showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            title: Text("Size"),
+                            content: Text("choose the Color"),
+                            actions: [
+                              MaterialButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop(context);
+                                },
+                                child: Text("Close"),
+                              )
+                            ],
+                          );
+                        });
+                  },
                   color: Colors.white70,
                   textColor: Colors.black,
                   child: Row(
@@ -112,7 +146,24 @@ class _ProductDetailsState extends State<ProductDetails> {
               Expanded(
                 child: MaterialButton(
                   elevation: 8,
-                  onPressed: () {},
+                  onPressed: () {
+                    showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            title: Text("Size"),
+                            content: Text("choose the quantity "),
+                            actions: [
+                              MaterialButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop(context);
+                                },
+                                child: Text("Close"),
+                              )
+                            ],
+                          );
+                        });
+                  },
                   color: Colors.white70,
                   textColor: Colors.black,
                   child: Row(
