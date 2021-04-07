@@ -104,9 +104,9 @@ class _HomeState extends State<Home> {
               //*? inkwell widget is used to convert any widget to a button
               onTap: () {},
               child: ListTile(
-                title: Text("Catagories", style: TextStyle(fontSize: 15)),
+                title: Text("Cart", style: TextStyle(fontSize: 15)),
                 leading: Icon(
-                  Icons.dashboard,
+                  Icons.shopping_cart_outlined,
                   color: Colors.black,
                 ),
               ),
