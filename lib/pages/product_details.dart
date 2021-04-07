@@ -1,4 +1,4 @@
-import 'package:fashion_point/components/products.dart';
+//import 'package:fashion_point/components/products.dart';
 import 'package:fashion_point/main.dart';
 import 'package:flutter/material.dart';
 
@@ -248,7 +248,7 @@ class _ProductDetailsState extends State<ProductDetails> {
             ],
           ),
 
-          //*! add product condition!*//
+          //*! add product condition !*//
           Row(
             children: <Widget>[
               Padding(
@@ -368,6 +368,7 @@ class Similar_Single_Prod extends StatelessWidget {
                           Product_detail_oldprice: product_oldPrice,
                           Product_detail_newPrice: product_price,
                         ))),
+
                 //*?push is used to push a widget on top of another widget
                 child: GridTile(
                     footer: Container(
