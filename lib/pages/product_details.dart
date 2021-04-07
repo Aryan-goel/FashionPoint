@@ -19,20 +19,20 @@ class _ProductDetailsState extends State<ProductDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        actions: [
-          IconButton(icon: Icon(Icons.search), onPressed: () {}),
-          IconButton(icon: Icon(Icons.shopping_cart_outlined), onPressed: () {})
-        ],
-        elevation: 20,
-        backgroundColor: Colors.red[800],
-        title: Text(
-          "Fashion Point",
-          style: TextStyle(fontSize: 20),
+        appBar: AppBar(
+          actions: [
+            IconButton(icon: Icon(Icons.search), onPressed: () {}),
+            IconButton(
+                icon: Icon(Icons.shopping_cart_outlined), onPressed: () {})
+          ],
+          elevation: 20,
+          backgroundColor: Colors.red[800],
+          title: Text(
+            "Fashion Point",
+            style: TextStyle(fontSize: 20),
+          ),
         ),
-      ),
-      body: ListView(
-        children: [
+        body: ListView(children: [
           Container(
             height: 300,
             child: GridTile(
@@ -221,6 +221,14 @@ class _ProductDetailsState extends State<ProductDetails> {
                 ),
               ),
               Padding(
+                padding: EdgeInsets.all(5),
+                child: Text(widget.Product_detail_name),
+              )
+            ],
+          ),
+          Row(
+            children: <Widget>[
+              Padding(
                 padding: EdgeInsets.fromLTRB(12, 5, 5, 5),
                 child: Text(
                   "Product brand",
@@ -228,16 +236,28 @@ class _ProductDetailsState extends State<ProductDetails> {
                 ),
               ),
               Padding(
+                padding: EdgeInsets.all(5),
+                child: Text("Brand"),
+              )
+            ],
+          ),
+
+          //*! add product condition!*//
+          Row(
+            children: <Widget>[
+              Padding(
                 padding: EdgeInsets.fromLTRB(12, 5, 5, 5),
                 child: Text(
-                  "Product condition",
+                  "Product Condition",
                   style: TextStyle(color: Colors.black),
                 ),
+              ),
+              Padding(
+                padding: EdgeInsets.all(5),
+                child: Text("NEW"),
               )
             ],
           )
-        ],
-      ),
-    );
+        ]));
   }
 }
