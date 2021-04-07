@@ -156,14 +156,14 @@ class _HomeState extends State<Home> {
           child: Text("Categories"),
         ),
 
-        //*! categories horizontal view
+        //*? categories horizontal view
         HorizontalListView(),
         Padding(
           padding: EdgeInsets.all(10),
           child: Text("Recent Products"),
         ),
 
-        //*! grid View of the recent elements
+        //*? grid View of the recent elements
         Container(
           height: 320,
           child: Products(),
