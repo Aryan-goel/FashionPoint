@@ -1,3 +1,4 @@
+import 'package:fashion_point/pages/cart_products.dart';
 import 'package:flutter/material.dart';
 
 class Cart extends StatefulWidget {
@@ -20,6 +21,33 @@ class _CartState extends State<Cart> {
           style: TextStyle(fontSize: 20),
         ),
         //centerTitle: true,
+      ),
+      body: Cartproducts(),
+      bottomNavigationBar: Container(
+        color: Colors.white,
+        child: Row(
+          children: [
+            Expanded(
+                child: ListTile(
+              title: Text(
+                "Total:",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              subtitle: Text("\$230"),
+            )),
+            Expanded(
+                child: MaterialButton(
+              onPressed: () {},
+              child: Text(
+                "Check out",
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
+              color: Colors.red[700],
+            ))
+          ],
+        ),
       ),
     );
   }

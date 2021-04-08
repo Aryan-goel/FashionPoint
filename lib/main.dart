@@ -108,7 +108,10 @@ class _HomeState extends State<Home> {
             ),
             InkWell(
               //*? inkwell widget is used to convert any widget to a button
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => Cart()));
+              },
               child: ListTile(
                 title: Text("Cart", style: TextStyle(fontSize: 15)),
                 leading: Icon(
