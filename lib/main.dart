@@ -1,5 +1,6 @@
 import 'package:fashion_point/components/horizontalListView.dart';
 import 'package:fashion_point/components/products.dart';
+import 'package:fashion_point/pages/cart.dart';
 
 import 'package:flutter/material.dart';
 import 'package:carousel_pro/carousel_pro.dart';
@@ -40,7 +41,12 @@ class _HomeState extends State<Home> {
       appBar: AppBar(
         actions: [
           IconButton(icon: Icon(Icons.search), onPressed: () {}),
-          IconButton(icon: Icon(Icons.shopping_cart_outlined), onPressed: () {})
+          IconButton(
+              icon: Icon(Icons.shopping_cart_outlined),
+              onPressed: () {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => Cart()));
+              })
         ],
         elevation: 20,
         backgroundColor: Colors.red[800],
