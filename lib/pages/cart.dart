@@ -10,11 +10,12 @@ class _CartState extends State<Cart> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // resizeToAvoidBottomInset: false,
       appBar: AppBar(
         actions: [
           IconButton(icon: Icon(Icons.search), onPressed: () {}),
         ],
-        elevation: 20,
+        elevation: 0,
         backgroundColor: Colors.red[800],
         title: Text(
           "Cart",
