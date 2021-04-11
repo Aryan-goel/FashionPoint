@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "287458948192",
+    "project_id": "fashion-point-16a85",
+    "storage_bucket": "fashion-point-16a85.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:287458948192:android:25371f24648c65f98b3f05",
+        "android_client_info": {
+          "package_name": "com.example.fashion_point"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "287458948192-0depkcb97hjtpgjn26m3fgel089mocme.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.fashion_point",
+            "certificate_hash": "12de959e5d3d0928cbf6188c9a645c777b3e2120"
+          }
+        },
+        {
+          "client_id": "287458948192-4be8or9nqs02vgtv0t0krprf1rbvkk7n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBIqSoNypx1euOoHqzGdc93aHi_7RTLNmI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "287458948192-4be8or9nqs02vgtv0t0krprf1rbvkk7n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
