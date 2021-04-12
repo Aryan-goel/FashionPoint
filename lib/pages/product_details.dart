@@ -1,5 +1,6 @@
 //import 'package:fashion_point/components/products.dart';
 import 'package:fashion_point/main.dart';
+import 'package:fashion_point/pages/home.dart';
 import 'package:flutter/material.dart';
 
 class ProductDetails extends StatefulWidget {
