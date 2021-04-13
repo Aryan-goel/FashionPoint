@@ -68,6 +68,8 @@ flutter:
     - images/cats/tshirt.png
     - images/cats/shoe.png
     - images/cats/accessories.png
+    - images/cats/back.jpg
+
     - images/cats/products/blazer1.jpeg
     - images/cats/products/blazer2.jpeg
     - images/cats/products/dress1.jpeg
