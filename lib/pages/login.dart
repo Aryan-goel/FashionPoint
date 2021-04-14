@@ -16,6 +16,9 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   final GoogleSignIn googleSignIn = GoogleSignIn();
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+  final _formKey = GlobalKey<FormState>();
+  TextEditingController _emailTextController = TextEditingController();
+  TextEditingController _passswordTextController = TextEditingController();
   SharedPreferences preferences;
   bool loading = false;
   bool isLoggedin = false;
@@ -89,14 +92,93 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.grey[800],
       body: Stack(
         children: <Widget>[
           Image.asset(
             'images/cats/back.jpg',
             fit: BoxFit.cover,
             height: double.infinity,
+          ),
+          Container(
+            color: Colors.black.withOpacity(0.4),
             width: double.infinity,
+            height: double.infinity,
+          ),
+          SafeArea(
+            child: Container(
+              alignment: Alignment.center,
+              child: Center(
+                child: Form(
+                    key: _formKey,
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Material(
+                            borderRadius: BorderRadius.circular(20),
+                            color: Colors.white.withOpacity(0.5),
+                            elevation: 0,
+                            child: Padding(
+                              padding: const EdgeInsets.all(4.0),
+                              child: TextFormField(
+                                controller: _emailTextController,
+                                decoration: InputDecoration(
+                                  hintText: "Email",
+                                  icon: Icon(
+                                    Icons.email,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                validator: (value) {
+                                  if (value.isEmpty) {
+                                    Pattern pattern =
+                                        r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+                                    RegExp regex = new RegExp(pattern);
+                                    if (!regex.hasMatch(value)) {
+                                      return "Please make sure your email address is valid";
+                                    } else {
+                                      return null;
+                                    }
+                                  }
+                                },
+                              ),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Material(
+                            borderRadius: BorderRadius.circular(20),
+                            color: Colors.white.withOpacity(0.5),
+                            elevation: 0,
+                            child: Padding(
+                              padding: const EdgeInsets.all(4.0),
+                              child: TextFormField(
+                                controller: _passswordTextController,
+                                decoration: InputDecoration(
+                                  hintText: "Password",
+                                  icon: Icon(
+                                    Icons.lock_outline_rounded,
+                                    color: Colors.white.withOpacity(1),
+                                  ),
+                                ),
+                                validator: (value) {
+                                  if (value.isEmpty) {
+                                    return "the password field cannot be empty";
+                                  } else if (value.length < 6) {
+                                    return "the password has to be atleast 6 characteres ";
+                                  }
+                                  return null;
+                                },
+                              ),
+                            ),
+                          ),
+                        )
+                      ],
+                    )),
+              ),
+            ),
           ),
           Visibility(
             visible: loading ?? true,
