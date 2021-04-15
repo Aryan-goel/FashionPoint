@@ -86,7 +86,11 @@ class _LoginState extends State<Login> {
       setState(() {
         loading = false;
       });
-    } else {}
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => Home()));
+    } else {
+      Fluttertoast.showToast(msg: "Login Failed:(");
+    }
   }
 
   @override
@@ -99,85 +103,147 @@ class _LoginState extends State<Login> {
             'images/cats/back.jpg',
             fit: BoxFit.cover,
             height: double.infinity,
+            width: double.infinity,
           ),
           Container(
-            color: Colors.black.withOpacity(0.4),
+            color: Colors.black.withOpacity(0.7),
             width: double.infinity,
             height: double.infinity,
           ),
           SafeArea(
             child: Container(
-              alignment: Alignment.center,
-              child: Center(
-                child: Form(
-                    key: _formKey,
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Material(
-                            borderRadius: BorderRadius.circular(20),
-                            color: Colors.white.withOpacity(0.5),
-                            elevation: 0,
-                            child: Padding(
-                              padding: const EdgeInsets.all(4.0),
-                              child: TextFormField(
-                                controller: _emailTextController,
-                                decoration: InputDecoration(
-                                  hintText: "Email",
-                                  icon: Icon(
-                                    Icons.email,
-                                    color: Colors.white,
-                                  ),
+              alignment: Alignment.topCenter,
+              child: Image.asset(
+                'images/cats/blah.png',
+                width: 300,
+                height: 200,
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 300.0),
+            child: Center(
+              child: Form(
+                  key: _formKey,
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Material(
+                          borderRadius: BorderRadius.circular(20),
+                          color: Colors.white.withOpacity(0.7),
+                          elevation: 0,
+                          child: Padding(
+                            padding: const EdgeInsets.all(4.0),
+                            child: TextFormField(
+                              controller: _emailTextController,
+                              decoration: InputDecoration(
+                                hintText: "Email",
+                                icon: Icon(
+                                  Icons.alternate_email_sharp,
+                                  color: Colors.black,
                                 ),
-                                validator: (value) {
-                                  if (value.isEmpty) {
-                                    Pattern pattern =
-                                        r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
-                                    RegExp regex = new RegExp(pattern);
-                                    if (!regex.hasMatch(value)) {
-                                      return "Please make sure your email address is valid";
-                                    } else {
-                                      return null;
-                                    }
-                                  }
-                                },
                               ),
+                              validator: (value) {
+                                if (value.isEmpty) {
+                                  Pattern pattern =
+                                      r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+                                  RegExp regex = new RegExp(pattern);
+                                  if (!regex.hasMatch(value)) {
+                                    return "Please make sure your email address is valid";
+                                  } else {
+                                    return null;
+                                  }
+                                }
+                              },
                             ),
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Material(
-                            borderRadius: BorderRadius.circular(20),
-                            color: Colors.white.withOpacity(0.5),
-                            elevation: 0,
-                            child: Padding(
-                              padding: const EdgeInsets.all(4.0),
-                              child: TextFormField(
-                                controller: _passswordTextController,
-                                decoration: InputDecoration(
-                                  hintText: "Password",
-                                  icon: Icon(
-                                    Icons.lock_outline_rounded,
-                                    color: Colors.white.withOpacity(1),
-                                  ),
+                      ),
+                      //*?password textfield
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Material(
+                          borderRadius: BorderRadius.circular(20),
+                          color: Colors.white.withOpacity(0.7),
+                          elevation: 0,
+                          child: Padding(
+                            padding: const EdgeInsets.all(4.0),
+                            child: TextFormField(
+                              controller: _passswordTextController,
+                              decoration: InputDecoration(
+                                hintText: "Password",
+                                icon: Icon(
+                                  Icons.lock_outline_rounded,
+                                  color: Colors.black.withOpacity(1),
                                 ),
-                                validator: (value) {
-                                  if (value.isEmpty) {
-                                    return "the password field cannot be empty";
-                                  } else if (value.length < 6) {
-                                    return "the password has to be atleast 6 characteres ";
-                                  }
-                                  return null;
-                                },
                               ),
+                              validator: (value) {
+                                if (value.isEmpty) {
+                                  return "the password field cannot be empty";
+                                } else if (value.length < 6) {
+                                  return "the password has to be atleast 6 characteres ";
+                                }
+                                return null;
+                              },
                             ),
                           ),
-                        )
-                      ],
-                    )),
-              ),
+                        ),
+                      ),
+
+                      //*?========Login button========
+                      Padding(
+                        padding: EdgeInsets.all(8),
+                        child: Material(
+                            borderRadius: BorderRadius.circular(20),
+                            color: Colors.blue[800].withOpacity(0.8),
+                            elevation: 0,
+                            child: MaterialButton(
+                              onPressed: () {},
+                              minWidth: MediaQuery.of(context).size.width,
+                              child: Text(
+                                "Login",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            )),
+                      ),
+                      Divider(
+                        color: Colors.black,
+                        thickness: 1.8,
+                      ),
+                      Text(
+                        "Other login in options",
+                        style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      //*?login with google button
+                      Padding(
+                        padding: EdgeInsets.all(8),
+                        child: Material(
+                            borderRadius: BorderRadius.circular(20),
+                            color: Colors.red[900].withOpacity(0.8),
+                            elevation: 0,
+                            child: MaterialButton(
+                              onPressed: () {
+                                handleSignIn();
+                              },
+                              minWidth: MediaQuery.of(context).size.width,
+                              child: Text(
+                                "Google",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            )),
+                      )
+                    ],
+                  )),
             ),
           ),
           Visibility(
@@ -190,23 +256,6 @@ class _LoginState extends State<Login> {
             ),
           ),
         ],
-      ),
-      bottomNavigationBar: Container(
-        child: Padding(
-          padding:
-              const EdgeInsets.only(left: 12, right: 12, top: 8, bottom: 8),
-          child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                primary: Colors.red[900],
-              ),
-              onPressed: () {
-                handleSignIn();
-              },
-              child: Text(
-                "Sign in / sign up with google",
-                style: TextStyle(color: Colors.white, fontSize: 18),
-              )),
-        ),
       ),
     );
   }
