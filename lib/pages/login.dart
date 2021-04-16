@@ -1,5 +1,6 @@
 import 'package:fashion_point/main.dart';
 import 'package:fashion_point/pages/home.dart';
+import 'package:fashion_point/pages/signUp.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -106,7 +107,7 @@ class _LoginState extends State<Login> {
             width: double.infinity,
           ),
           Container(
-            color: Colors.black.withOpacity(0.7),
+            color: Colors.black.withOpacity(0.6),
             width: double.infinity,
             height: double.infinity,
           ),
@@ -130,8 +131,8 @@ class _LoginState extends State<Login> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Material(
-                          borderRadius: BorderRadius.circular(20),
-                          color: Colors.white.withOpacity(0.7),
+                          borderRadius: BorderRadius.circular(25),
+                          color: Colors.white.withOpacity(0.6),
                           elevation: 0,
                           child: Padding(
                             padding: const EdgeInsets.all(4.0),
@@ -164,8 +165,8 @@ class _LoginState extends State<Login> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Material(
-                          borderRadius: BorderRadius.circular(20),
-                          color: Colors.white.withOpacity(0.7),
+                          borderRadius: BorderRadius.circular(25),
+                          color: Colors.white.withOpacity(0.6),
                           elevation: 0,
                           child: Padding(
                             padding: const EdgeInsets.all(4.0),
@@ -196,7 +197,7 @@ class _LoginState extends State<Login> {
                         padding: EdgeInsets.all(8),
                         child: Material(
                             borderRadius: BorderRadius.circular(20),
-                            color: Colors.blue[800].withOpacity(0.8),
+                            color: Colors.blue[700].withOpacity(0.9),
                             elevation: 0,
                             child: MaterialButton(
                               onPressed: () {},
@@ -211,15 +212,16 @@ class _LoginState extends State<Login> {
                             )),
                       ),
                       Divider(
-                        color: Colors.black,
+                        color: Colors.black.withOpacity(0.7),
                         thickness: 1.8,
                       ),
                       Text(
                         "Other login in options",
                         style: TextStyle(
-                            fontSize: 20,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold),
+                          fontSize: 18,
+                          color: Colors.white,
+                          //fontWeight: FontWeight.bold
+                        ),
                       ),
                       //*?login with google button
                       Padding(
@@ -241,7 +243,22 @@ class _LoginState extends State<Login> {
                                     fontWeight: FontWeight.bold),
                               ),
                             )),
-                      )
+                      ),
+                      Padding(
+                          padding: EdgeInsets.all(8),
+                          child: InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => SignUp()));
+                            },
+                            child: Text(
+                              "sign up",
+                              style: TextStyle(
+                                  color: Colors.red[900], fontSize: 17),
+                            ),
+                          ))
                     ],
                   )),
             ),
