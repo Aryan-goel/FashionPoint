@@ -23,7 +23,7 @@ class _HomeState extends State<Home> {
           AssetImage('images/cats/w4.jpeg'),
           AssetImage('images/m2.jpg'),
         ],
-        autoplay: false,
+        autoplay: true,
         animationCurve: Curves.fastOutSlowIn,
         animationDuration: Duration(milliseconds: 2000),
         dotSize: 5,
