@@ -1,4 +1,4 @@
-import 'package:fashion_point/pages/home.dart';
+//import 'package:fashion_point/pages/home.dart';
 import 'package:fashion_point/pages/login.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -10,5 +10,6 @@ void main() async {
   runApp(MaterialApp(
     home: Login(),
     debugShowCheckedModeBanner: false,
+    theme: ThemeData(primaryColor: Colors.red[800]),
   ));
 }

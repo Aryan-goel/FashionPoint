@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class SignUp extends StatefulWidget {
@@ -14,6 +15,7 @@ class _SignUpState extends State<SignUp> {
   TextEditingController _nameTextController = TextEditingController();
   TextEditingController _confirmTextController = TextEditingController();
   String gender;
+  String groupvalue = "male";
   bool loading = false;
   bool isLoggedin = false;
   @override
@@ -79,7 +81,44 @@ class _SignUpState extends State<SignUp> {
                         ),
                       ),
 
-                      //*?Email text field
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          color: Colors.white.withOpacity(0.5),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: ListTile(
+                                  title: Text(
+                                    "Male",
+                                    textAlign: TextAlign.end,
+                                    style: TextStyle(color: Colors.black),
+                                  ),
+                                  trailing: Radio(
+                                      value: "male",
+                                      groupValue: groupvalue,
+                                      onChanged: (e) => valueChanged(e)),
+                                ),
+                              ),
+                              Expanded(
+                                child: ListTile(
+                                  title: Text(
+                                    "Female",
+                                    textAlign: TextAlign.end,
+                                    style: TextStyle(color: Colors.black),
+                                  ),
+                                  trailing: Radio(
+                                      value: "female",
+                                      groupValue: groupvalue,
+                                      onChanged: (e) => valueChanged(e)),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+
+//*?Email text field
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Material(
@@ -113,7 +152,7 @@ class _SignUpState extends State<SignUp> {
                           ),
                         ),
                       ),
-                      //*?password textfield
+//*?password textfield
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Material(
@@ -143,7 +182,7 @@ class _SignUpState extends State<SignUp> {
                           ),
                         ),
                       ),
-                      //*?confirm password textField
+//*?confirm password textField
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Material(
@@ -176,20 +215,18 @@ class _SignUpState extends State<SignUp> {
                         ),
                       ),
 
-                      //*?resgister button
+//*?resgister button
                       Padding(
                         padding: EdgeInsets.all(8),
                         child: Material(
                             borderRadius: BorderRadius.circular(10),
-                            color: Colors.blue[900].withOpacity(0.8),
+                            color: Colors.red[900].withOpacity(0.8),
                             elevation: 0,
                             child: MaterialButton(
-                              onPressed: () {
-                                //handlesignin();
-                              },
+                              onPressed: () {},
                               minWidth: MediaQuery.of(context).size.width,
                               child: Text(
-                                "Regiter",
+                                "SignUp",
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 18,
@@ -209,7 +246,7 @@ class _SignUpState extends State<SignUp> {
                               "Login",
                               textAlign: TextAlign.center,
                               style: TextStyle(
-                                  color: Colors.red[900], fontSize: 17),
+                                  color: Colors.blue[900], fontSize: 17),
                             ),
                           ))
                     ],
@@ -228,5 +265,15 @@ class _SignUpState extends State<SignUp> {
         ],
       ),
     );
+  }
+
+  valueChanged(e) {
+    setState(() {
+      if (e == "male") {
+        groupvalue = e;
+      } else if (e == "female") {
+        groupvalue = e;
+      }
+    });
   }
 }
