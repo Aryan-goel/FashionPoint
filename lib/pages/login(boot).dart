@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:fashion_point/pages/signup(boot).dart';
 import 'package:fashion_point/pages/user.dart';
+import 'package:http/http.dart' as http;
 
 import 'package:flutter/material.dart';
 
@@ -11,7 +14,15 @@ class Login2 extends StatefulWidget {
 class _LoginState extends State<Login2> {
   final _formKey = GlobalKey<FormState>();
   User user = User("", "");
-  TextEditingController _emailTextController = TextEditingController();
+  Future save() async {
+    String url = "http://localhost:8080/login";
+    var res = await http.post(url,
+        headers: {"content-Type": "api/json"},
+        body: json.encode({"email": user.email, "password": user.password}));
+    print(res.body);
+  }
+
+  // TextEditingController _emailTextController = TextEditingController();
   TextEditingController _passswordTextController = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -41,6 +52,8 @@ class _LoginState extends State<Login2> {
               ),
             ),
           ),
+
+          //*?email text field
           Padding(
             padding: const EdgeInsets.only(top: 150.0),
             child: Center(
@@ -60,6 +73,9 @@ class _LoginState extends State<Login2> {
                               child: TextFormField(
                                   controller:
                                       TextEditingController(text: user.email),
+                                  onChanged: (val) {
+                                    user.email = val;
+                                  },
                                   decoration: InputDecoration(
                                       hintText: "Email",
                                       icon: Icon(
@@ -87,7 +103,11 @@ class _LoginState extends State<Login2> {
                             child: Padding(
                               padding: const EdgeInsets.all(4.0),
                               child: TextFormField(
-                                controller: _passswordTextController,
+                                controller:
+                                    TextEditingController(text: user.password),
+                                onChanged: (val) {
+                                  user.password = val;
+                                },
                                 obscureText: true,
                                 decoration: InputDecoration(
                                     hintText: "Password",
@@ -117,7 +137,9 @@ class _LoginState extends State<Login2> {
                               color: Colors.blue[700].withOpacity(0.9),
                               elevation: 0,
                               child: MaterialButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  save();
+                                },
                                 minWidth: MediaQuery.of(context).size.width,
                                 child: Text(
                                   "Login",
@@ -140,7 +162,7 @@ class _LoginState extends State<Login2> {
                             //fontWeight: FontWeight.bold
                           ),
                         ),
-                        //*?login with google button
+                        //?google sign in button
                         Padding(
                           padding: EdgeInsets.all(8),
                           child: Material(
