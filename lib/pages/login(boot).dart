@@ -15,9 +15,9 @@ class _LoginState extends State<Login2> {
   final _formKey = GlobalKey<FormState>();
   User user = User("", "");
   Future save() async {
-    String url = "http://localhost:8080/login";
-    var res = await http.post(url,
-        headers: {"content-Type": "api/json"},
+    //String url = "http://localhost:8080/login";
+    var res = await http.post("http://localhost:8080/login",
+        headers: {"Content-Type": "application/json"},
         body: json.encode({"email": user.email, "password": user.password}));
     print(res.body);
   }
@@ -134,7 +134,7 @@ class _LoginState extends State<Login2> {
                           padding: EdgeInsets.all(8),
                           child: Material(
                               borderRadius: BorderRadius.circular(10),
-                              color: Colors.blue[700].withOpacity(0.9),
+                              color: Colors.blue[700].withOpacity(1),
                               elevation: 0,
                               child: MaterialButton(
                                 onPressed: () {

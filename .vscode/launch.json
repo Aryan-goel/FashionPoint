@@ -8,6 +8,16 @@
             "name": "fashion_point",
             "request": "launch",
             "type": "dart"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-ApiApplication<api>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.example.api.ApiApplication",
+            "projectName": "api",
+            "args": ""
         }
     ]
 }
