@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
     @Autowired
     private UserRepository userRepository;
-
-
     @PostMapping("/register")
     public User Register(@RequestBody User user) {
         return userRepository.save(user);
@@ -18,8 +16,8 @@ public class UserController {
     }
     @PostMapping("/login")
     public User Login(@RequestBody User user) {
-      User oldUser = userRepository.findbyEmailandPassword(user.email,user.password);
-      return oldUser; 
+       User oldUser= userRepository.findByEmailAndPassword(user.email, user.password);
+        return oldUser;
         
     }
     

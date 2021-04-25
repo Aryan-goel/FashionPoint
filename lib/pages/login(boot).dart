@@ -15,8 +15,8 @@ class _LoginState extends State<Login2> {
   final _formKey = GlobalKey<FormState>();
   User user = User("", "");
   Future save() async {
-    //String url = "http://localhost:8080/login";
-    var res = await http.post("http://localhost:8080/login",
+    String url = "http://localhost:8080/login";
+    var res = await http.post(url,
         headers: {"Content-Type": "application/json"},
         body: json.encode({"email": user.email, "password": user.password}));
     print(res.body);
