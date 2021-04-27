@@ -70,7 +70,7 @@ class _HomeState extends State<Home> {
               decoration: BoxDecoration(color: Colors.red[800]),
             ),
             InkWell(
-              //*? inkwell widget is used to convert any widget to a button
+              //   //*? inkwell widget is used to convert any widget to a button
               onTap: () {},
               child: ListTile(
                 title: Text("Home", style: TextStyle(fontSize: 15)),
