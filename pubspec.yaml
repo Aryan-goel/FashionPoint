@@ -30,6 +30,7 @@ dependencies:
   google_sign_in: ^5.0.1
   shared_preferences: ^2.0.5
   fluttertoast: ^8.0.3
+  firebase_database: ^6.1.2
   
 
  
