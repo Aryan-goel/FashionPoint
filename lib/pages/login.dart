@@ -140,12 +140,12 @@ class _LoginState extends State<Login> {
                             child: TextFormField(
                               controller: _emailTextController,
                               decoration: InputDecoration(
-                                hintText: "Email",
-                                icon: Icon(
-                                  Icons.alternate_email_sharp,
-                                  color: Colors.black,
-                                ),
-                              ),
+                                  hintText: "Email",
+                                  icon: Icon(
+                                    Icons.alternate_email_sharp,
+                                    color: Colors.black,
+                                  ),
+                                  border: InputBorder.none),
                               validator: (value) {
                                 if (value.isEmpty) {
                                   Pattern pattern =
@@ -175,12 +175,12 @@ class _LoginState extends State<Login> {
                               controller: _passswordTextController,
                               obscureText: true,
                               decoration: InputDecoration(
-                                hintText: "Password",
-                                icon: Icon(
-                                  Icons.lock_outline_rounded,
-                                  color: Colors.black.withOpacity(1),
-                                ),
-                              ),
+                                  hintText: "Password",
+                                  icon: Icon(
+                                    Icons.lock_outline_rounded,
+                                    color: Colors.black.withOpacity(1),
+                                  ),
+                                  border: InputBorder.none),
                               validator: (value) {
                                 if (value.isEmpty) {
                                   return "the password field cannot be empty";
@@ -214,7 +214,7 @@ class _LoginState extends State<Login> {
                             )),
                       ),
                       Divider(
-                        color: Colors.black.withOpacity(0.7),
+                        color: Colors.white.withOpacity(0.4),
                         thickness: 1.8,
                       ),
                       Text(

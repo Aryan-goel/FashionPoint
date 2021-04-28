@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +18,8 @@ class _SignUpState extends State<SignUp> {
   String gender;
   String groupvalue = "male";
   bool loading = false;
-  bool isLoggedin = false;
+  bool hidePass = true;
+  //bool isLoggedin = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -126,46 +126,12 @@ class _SignUpState extends State<SignUp> {
                           elevation: 0,
                           child: Padding(
                             padding: const EdgeInsets.all(4.0),
-                            child: TextFormField(
-                              controller: _passswordTextController,
-                              obscureText: true,
-                              decoration: InputDecoration(
-                                  hintText: "Password",
-                                  icon: Icon(
-                                    Icons.lock_outline_rounded,
-                                    color: Colors.black.withOpacity(1),
-                                  ),
-                                  border: InputBorder.none),
-                              validator: (value) {
-                                if (value.isEmpty) {
-                                  return "the password field cannot be empty";
-                                } else if (value.length < 6) {
-                                  return "the password has to be atleast 6 characteres ";
-                                } else if (_passswordTextController.text !=
-                                    value) {
-                                  return "the passwords do not match !";
-                                }
-                                return null;
-                              },
-                            ),
-                          ),
-                        ),
-                      ),
-//*?confirm password textField
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Material(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.white.withOpacity(0.5),
-                          elevation: 0,
-                          child: Padding(
-                            padding: const EdgeInsets.all(4.0),
-                            child: Expanded(
-                              child: TextFormField(
-                                controller: _confirmTextController,
-                                obscureText: true,
+                            child: ListTile(
+                              title: TextFormField(
+                                controller: _passswordTextController,
+                                obscureText: hidePass,
                                 decoration: InputDecoration(
-                                    hintText: "Confirm Password",
+                                    hintText: "Password",
                                     icon: Icon(
                                       Icons.lock_outline_rounded,
                                       color: Colors.black.withOpacity(1),
@@ -176,9 +142,61 @@ class _SignUpState extends State<SignUp> {
                                     return "the password field cannot be empty";
                                   } else if (value.length < 6) {
                                     return "the password has to be atleast 6 characteres ";
+                                  } else if (_passswordTextController.text !=
+                                      value) {
+                                    return "the passwords do not match !";
                                   }
                                   return null;
                                 },
+                              ),
+                              trailing: IconButton(
+                                  icon: Icon(Icons.remove_red_eye),
+                                  onPressed: () {
+                                    setState(() {
+                                      hidePass = false;
+                                    });
+                                  }),
+                            ),
+                          ),
+                        ),
+                      ),
+                      //*?confirm password textField
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Material(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.white.withOpacity(0.5),
+                          elevation: 0,
+                          child: Padding(
+                            padding: const EdgeInsets.all(4.0),
+                            child: Expanded(
+                              child: ListTile(
+                                title: TextFormField(
+                                  controller: _confirmTextController,
+                                  obscureText: hidePass,
+                                  decoration: InputDecoration(
+                                      hintText: "Confirm Password",
+                                      icon: Icon(
+                                        Icons.lock_outline_rounded,
+                                        color: Colors.black.withOpacity(1),
+                                      ),
+                                      border: InputBorder.none),
+                                  validator: (value) {
+                                    if (value.isEmpty) {
+                                      return "the password field cannot be empty";
+                                    } else if (value.length < 6) {
+                                      return "the password has to be atleast 6 characteres ";
+                                    }
+                                    return null;
+                                  },
+                                ),
+                                trailing: IconButton(
+                                    icon: Icon(Icons.remove_red_eye),
+                                    onPressed: () {
+                                      setState(() {
+                                        hidePass = false;
+                                      });
+                                    }),
                               ),
                             ),
                           ),
@@ -229,7 +247,9 @@ class _SignUpState extends State<SignUp> {
                             color: Colors.red[900].withOpacity(0.8),
                             elevation: 0,
                             child: MaterialButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                validateForm();
+                              },
                               minWidth: MediaQuery.of(context).size.width,
                               child: Text(
                                 "SignUp",
@@ -283,5 +303,19 @@ class _SignUpState extends State<SignUp> {
         gender = e;
       }
     });
+  }
+
+  void validateForm() async {
+    FormState formstate = _formKey.currentState;
+    if (formstate.validate()) {
+      User user = await firebaseAuth.currentUser;
+      if (user == null) {
+        firebaseAuth
+            .createUserWithEmailAndPassword(
+                email: _emailTextController.text,
+                password: _passswordTextController.text)
+            .then((user) => {});
+      }
+    }
   }
 }
