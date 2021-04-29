@@ -1,7 +1,9 @@
+import 'package:fashion_point/pages/home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fashion_point/databases/users.dart';
 
 class SignUp extends StatefulWidget {
   @override
@@ -11,6 +13,7 @@ class SignUp extends StatefulWidget {
 class _SignUpState extends State<SignUp> {
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   final _formKey = GlobalKey<FormState>();
+  UserServices _userServices = UserServices();
   TextEditingController _emailTextController = TextEditingController();
   TextEditingController _passswordTextController = TextEditingController();
   TextEditingController _nameTextController = TextEditingController();
@@ -19,7 +22,7 @@ class _SignUpState extends State<SignUp> {
   String groupvalue = "male";
   bool loading = false;
   bool hidePass = true;
-  //bool isLoggedin = false;
+//bool isLoggedin = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -160,7 +163,7 @@ class _SignUpState extends State<SignUp> {
                           ),
                         ),
                       ),
-                      //*?confirm password textField
+//*?confirm password textField
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Material(
@@ -247,7 +250,7 @@ class _SignUpState extends State<SignUp> {
                             color: Colors.red[900].withOpacity(0.8),
                             elevation: 0,
                             child: MaterialButton(
-                              onPressed: () {
+                              onPressed: () async {
                                 validateForm();
                               },
                               minWidth: MediaQuery.of(context).size.width,
@@ -305,8 +308,9 @@ class _SignUpState extends State<SignUp> {
     });
   }
 
-  void validateForm() async {
+  Future validateForm() async {
     FormState formstate = _formKey.currentState;
+    Map value;
     if (formstate.validate()) {
       User user = await firebaseAuth.currentUser;
       if (user == null) {
@@ -314,7 +318,17 @@ class _SignUpState extends State<SignUp> {
             .createUserWithEmailAndPassword(
                 email: _emailTextController.text,
                 password: _passswordTextController.text)
-            .then((user) => {});
+            .then((user) => {
+                  _userServices.createUser(user.user.uid, {
+                    "username": user.user.displayName,
+                    "email": user.user.email,
+                    "uderId": user.user.uid,
+                    "gender": gender,
+                  })
+                })
+            .catchError((error) => {print((error.toString()))});
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => Home()));
       }
     }
   }
