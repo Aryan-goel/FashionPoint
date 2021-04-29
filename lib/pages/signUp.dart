@@ -310,8 +310,9 @@ class _SignUpState extends State<SignUp> {
 
   Future validateForm() async {
     FormState formstate = _formKey.currentState;
-    Map value;
+
     if (formstate.validate()) {
+      formstate.reset();
       User user = await firebaseAuth.currentUser;
       if (user == null) {
         firebaseAuth
