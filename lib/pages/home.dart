@@ -2,6 +2,8 @@ import 'package:carousel_pro/carousel_pro.dart';
 import 'package:fashion_point/components/horizontalListView.dart';
 import 'package:fashion_point/components/products.dart';
 import 'package:fashion_point/pages/cart.dart';
+import 'package:fashion_point/pages/login.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
@@ -130,9 +132,14 @@ class _HomeState extends State<Home> {
             ),
             InkWell(
               //*? inkwell widget is used to convert any widget to a button
-              onTap: () {},
+              onTap: () {
+                FirebaseAuth.instance.signOut().then((value) {
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (context) => Login()));
+                });
+              },
               child: ListTile(
-                title: Text("Settings", style: TextStyle(fontSize: 15)),
+                title: Text("log out", style: TextStyle(fontSize: 15)),
                 leading: Icon(
                   Icons.settings,
                   color: Colors.black,

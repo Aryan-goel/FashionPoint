@@ -313,7 +313,7 @@ class _SignUpState extends State<SignUp> {
 
     if (formstate.validate()) {
       formstate.reset();
-      User user = await firebaseAuth.currentUser;
+      User user = firebaseAuth.currentUser;
       if (user == null) {
         firebaseAuth
             .createUserWithEmailAndPassword(
@@ -323,11 +323,11 @@ class _SignUpState extends State<SignUp> {
                   _userServices.createUser(user.user.uid, {
                     "username": user.user.displayName,
                     "email": user.user.email,
-                    "uderId": user.user.uid,
+                    "userId": user.user.uid,
                     "gender": gender,
                   })
                 })
-            .catchError((error) => {print((error.toString()))});
+            .catchError((error) => {print(error.toString())});
         Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (context) => Home()));
       }

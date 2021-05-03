@@ -34,9 +34,10 @@ class _LoginState extends State<Login> {
     setState(() {
       loading = true;
     });
+
     preferences = await SharedPreferences.getInstance();
     isLoggedin = await googleSignIn.isSignedIn();
-    if (isLoggedin == true) {
+    if (isLoggedin) {
       Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (context) => Home()));
     }
@@ -202,7 +203,12 @@ class _LoginState extends State<Login> {
                             color: Colors.blue[700].withOpacity(0.9),
                             elevation: 0,
                             child: MaterialButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => Home()));
+                              },
                               minWidth: MediaQuery.of(context).size.width,
                               child: Text(
                                 "Login",
